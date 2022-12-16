@@ -2,16 +2,20 @@
 
 Kubernetes is an open-source platform, very often called containers’ orchestrator. Each k8s cluster consists of multiple components, where Master, Nodes and k8s resources (k8s objects) are the most essential ones.
 
-![deployment-strategy](images/kub1.JPEG)
+![deployment-strategy](images/kub1.jpg)
 
 # Kubernetes cluster
 
 Master is the cluster orchestrator, which exposes the k8s API (docs). Every time, when we are deploying the app containers, we are telling something like: “Hey Master! Here is the docker image URL of my application. Please, start the app container for me.”. And then Master schedules the app instances (containers) to run on the Nodes. Kubernetes will choose where to deploy the app based on Nodes’ available resources.
 
-Master manages the cluster. It scales and schedules app containers and rolls out the updates.
-Nodes are k8s workers, which run app containers. A Node consists of the following processes:
+Master manages the cluster. It scales and schedules app containers and rolls out the updates. 
+Nodes are k8s workers, which run app containers. 
+A Node consists of the following processes:
+
 	• kubelet — it’s an agent for managing the Node. It communicates with the Master using k8s API. It manages the containers and ensures that they are running and are healthy.
+
 	• other tools — Node contains additional tools like Docker, to handle the container operations like pulling the image, running and so on.
+
 Nodes are workers, which run application containers. They consist of the kubelet agent, which manages the Node and comunicates with the Master.
 
 
@@ -19,7 +23,7 @@ Nodes are workers, which run application containers. They consist of the kubelet
 
 Pod
 
-![deployment-strategy](images/kub2.JPEG)
+![deployment-strategy](images/kub2.jpg)
 
 # Pod in Kubernetes cluster
 
