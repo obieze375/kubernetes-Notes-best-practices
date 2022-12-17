@@ -235,7 +235,45 @@ For more details, see [Namespace](https://kubernetes.io/docs/reference/kubernete
     kubectl create namespace <insert-namespace-name-here>
     ```
     
+## Creating Deployment with namespace 
 
+
+There are three possible solutions.
+
+1) Specify namespace in the kubectl command:
+
+```
+kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml -n my-namespace   
+```
+
+
+
+2) Specify namespace in your yaml files:
+
+```
+apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: my-deployment
+    namespace: my-namespace
+    
+```
+  
+
+
+3) Change default namespace in ~/.kube/config:
+
+
+```
+apiVersion: v1
+kind: Config
+clusters:
+- name: "k8s-dev-cluster-01"
+  cluster:
+    server: "https://example.com/k8s/clusters/abc"
+    namespace: "my-namespace"
+
+```    
 The name of your namespace must be a valid [DNS label](https://kubernetes.io/docs/concepts/overview/working-with-objects/names#dns-label-names).
 
 There's an optional field `finalizers`, which allows observables to purge resources whenever the namespace is deleted. Keep in mind that if you specify a nonexistent finalizer, the namespace will be created but will get stuck in the `Terminating` state if the user tries to delete it.
@@ -1853,3 +1891,63 @@ kubectl get service hello-minikube -o yaml
 
 
 ![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/kubectl-cheatsheet.md?pixel)
+
+## Minikube Commands
+
+Create the docker group if not exist
+
+```
+sudo groupadd docker 
+
+```
+Add user to the docker group
+
+```
+sudo usermod -aG docker [user]
+
+```
+To activate changes to the group
+
+```
+newgrp docker
+
+```
+start minikube cluster
+
+```
+minikube start
+
+```
+
+Start minikube with docker
+
+```
+minikube start --force --driver=docker
+
+```
+
+Stop Minikube
+
+```
+minikube delete
+
+```
+
+
+
+
+  
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
